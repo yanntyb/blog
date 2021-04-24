@@ -12,6 +12,7 @@ require_once './Controller/Traits/RenderViewTrait.php';
 
 require_once './Model/Entity/User.php';
 require_once './Model/Entity/Article.php';
+require_once './Model/Entity/Comment.php';
 
 require_once './Model/Manager/ArticleManager.php';
 require_once './Model/Manager/UserManager.php';
@@ -37,6 +38,11 @@ if(isset($_GET['controller'])) {
                 switch($_GET['action']) {
                     case 'new' :
                         $controller->addArticle($_POST);
+                        break;
+                    case 'see' :
+                        if(isset($_GET["article"])){
+                            $controller->showArticle($_GET["article"]);
+                        }
                         break;
                     default:
                         break;

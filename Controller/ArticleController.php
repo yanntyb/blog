@@ -11,12 +11,19 @@ class ArticleController {
 
     use RenderViewTrait;
 
+    private ArticleManager $articleManager;
+    private UserManager $userManager;
+
+    public function __construct() {
+        $this->articleManager = new ArticleManager();
+        $this->userManager = new UserManager();
+    }
+
     /**
      * Affiche la liste des articles disponibles.
      */
     public function articles() {
-        $manager = new ArticleManager();
-        $articles = $manager->getAll();
+        $articles = $this->articleManager->getAll();
 
         $this->render('articles', 'Mes articles', [
             'articles' => $articles,
@@ -29,19 +36,24 @@ class ArticleController {
     public function addArticle($fields){
         if(isset($fields['content'], $fields['user'])) {
             // Alors ca veut dure que le formulaire a été envoyé.
-            $userManager = new UserManager();
-            $articleManager = new ArticleManager();
 
             $content = htmlentities($fields['content']);
             $user_fk = intval($fields['user']);
+            $title = htmlentities($fields['title']);
 
-            $user = $userManager->getById($user_fk);
+            $user = $this->userManager->getById($user_fk);
             if($user->getId()) {
-                $article = new Article($content, $user);
-                $articleManager->add($article);
+                $article = new Article($content, $user, $title);
+                $this->articleManager->add($article);
             }
         }
-
         $this->render('add.article', 'Ajouter un article');
+    }
+
+    public function showArticle($id){
+        $article = $this->articleManager->getById($id);
+        $this->render('article',$article->getTitle(),[
+            'article' => $article,
+        ]);
     }
 }

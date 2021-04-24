@@ -8,6 +8,7 @@
     <title><?= $title ?></title>
 </head>
 <body>
+    <?php include( $_SERVER["DOCUMENT_ROOT"] . "/assets/parts/nav.php") ?>
     <?= $html ?>
 </body>
 </html>

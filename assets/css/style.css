@@ -37,3 +37,28 @@ input, textarea {
 .form-content {
     margin: 5rem;
 }
+
+#navbar {
+    width: 100%;
+    height: 5vh;
+    border: 1px solid black;
+}
+
+#navbar ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+    width: 100%;
+    height: 100%;
+}
+
+.articleContent{
+    width: 80%;
+    border: 1px solid black;
+}
+
+.commentDiv{
+    border: 1px solid black;
+}
