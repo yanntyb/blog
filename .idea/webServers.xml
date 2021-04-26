@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="dfaaa664-5d67-498f-a9ae-5a0ff6e4fd1e" name="blog.yanntb.com" url="https://india.o2switch.net:2083">
+        <fileTransfer rootFolder="/blog.yanntb.com" host="india.o2switch.net" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

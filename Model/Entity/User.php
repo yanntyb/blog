@@ -31,8 +31,9 @@ class User {
     /**
      * @param int|null $id
      */
-    public function setId(?int $id): void {
+    public function setId(?int $id): User {
         $this->id = $id;
+        return $this;
     }
 
     /**
@@ -45,8 +46,9 @@ class User {
     /**
      * @param string $username
      */
-    public function setUsername(string $username): void {
+    public function setUsername(string $username): User {
         $this->username = $username;
+        return $this;
     }
 
     /**
@@ -59,8 +61,9 @@ class User {
     /**
      * @param string $password
      */
-    public function setPassword(string $password): void {
+    public function setPassword(string $password): User {
         $this->password = $password;
+        return $this;
     }
 
 }

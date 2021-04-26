@@ -7,8 +7,9 @@ use Model\Entity\Article;
 use Model\Entity\Comment;
 use Model\Entity\User;
 use Model\Manager\Traits\ManagerTrait;
+use Model\Manager\UserManager;
 use Model\DB;
-use Model\User\UserManager;
+
 
 class ArticleManager {
     use ManagerTrait;
@@ -56,23 +57,40 @@ class ArticleManager {
         $request->bindValue(":id", $id);
         if($request->execute()){
             if($selected = $request->fetch()){
-                $request = $this->db->prepare("SELECT * FROM articleComment as a INNER JOIN comment as c ON a.comment_fk = c.id WHERE a.article_fk = :id");
-                $request->bindValue(":id", $id);
-                if($request->execute()){
-                    $comments = [];
-                    $userManager = new UserManager();
-                    foreach($request->fetchAll() as $commentSelected){
-                        $comment = new Comment();
-                        $comment
-                            ->setContent($commentSelected["content"])
-                            ->setAuthor($userManager->getById($commentSelected["user_fk"]));
-                        $comments[] = $comment;
-                    }
-                    $manager = new UserManager();
-                    $user = $manager->getById($selected["user_fk"]);
-                    return new Article($selected["content"], $user ,$selected["title"], $comments);
-                }
+                $manager = new UserManager();
+                $user = $manager->getById($selected["user_fk"]);
+                return new Article($selected["content"], $user ,$selected["title"]);
             }
         }
+    }
+
+    function getComment($id){
+        $request = $this->db->prepare("SELECT * FROM articleComment as a INNER JOIN comment as c ON a.comment_fk = c.id WHERE a.article_fk = :id");
+        $request->bindValue(":id", $id);
+        if($request->execute()){
+            $comments = [];
+            $userManager = new UserManager();
+            foreach($request->fetchAll() as $selected){
+                $comment = new Comment();
+                $comment
+                    ->setContent($selected["content"])
+                    ->setAuthor($userManager->getById($selected["user_fk"]));
+                $comments[] = $comment;
+            }
+            return $comments;
+        }
+    }
+
+    public function addComment(int $idUser, int $idArticle, string $content){
+        $request = $this->db->prepare("INSERT INTO comment (content) VALUES (:content)");
+        $request->bindValue(":content", $content);
+        $request->execute();
+        $id = $this->db->lastInsertId();
+
+        $request = $this->db->prepare("INSERT INTO articleComment (article_fk, comment_fk, user_fk) VALUES (:article_fk, :comment_fk, :user_fk)");
+        $request->bindValue(":article_fk", $idArticle);
+        $request->bindValue(":comment_fk", $id);
+        $request->bindValue(":user_fk", $idUser);
+        $request->execute();
     }
 }

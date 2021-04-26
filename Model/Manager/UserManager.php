@@ -1,6 +1,6 @@
 <?php
 
-namespace Model\User;
+namespace Model\Manager;
 
 use Model\DB;
 use Model\Entity\User;
@@ -29,5 +29,43 @@ class UserManager {
             }
         }
         return $user;
+    }
+
+    public function getAll(){
+        $request = $this->db->prepare("SELECT * FROM user");
+        if($request->execute()){
+            $users = [];
+            foreach($request->fetchAll() as $selected){
+                $user = new User();
+                $user
+                    ->setId($selected["id"])
+                    ->setUsername($selected["username"]);
+                $users[] = $user;
+            }
+            return $users;
+        }
+    }
+    
+    public function insertUser($name, $pass){
+        $request = $this->db->prepare("INSERT INTO user  (username, password) VALUES (:name, :pass)");
+        $request->bindValue(":name", $name);
+        $request->bindValue(":pass", $pass);
+        $request->execute();
+    }
+
+    public function getUser($name, $pass){
+        $request = $this->db->prepare("SELECT * FROM user WHERE username = :name");
+        $request->bindValue(":name", $name);
+        if($request->execute() && $select = $request->fetch()){
+            if(password_verify($pass, $select["password"])){
+                $user = new User();
+                $user
+                    ->setId($select["id"])
+                    ->setUsername($select["username"]);
+                return $user;
+            }
+            return "bad pass";
+        }
+        return "bad name";
     }
 }

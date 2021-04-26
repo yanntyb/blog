@@ -10,6 +10,7 @@ html {
 
 body {
     width: 100%;
+    background-color: #C1994E;
 }
 
 .articles {
@@ -42,6 +43,7 @@ input, textarea {
     width: 100%;
     height: 5vh;
     border: 1px solid black;
+    background-color: #b2b992;
 }
 
 #navbar ul{
@@ -52,13 +54,66 @@ input, textarea {
     list-style: none;
     width: 100%;
     height: 100%;
+
 }
 
-.articleContent{
+#articleContent{
     width: 80%;
     border: 1px solid black;
 }
 
 .commentDiv{
     border: 1px solid black;
+}
+
+.comment{
+    border: 1px solid black;
+}
+
+#connexionCont{
+    width: 100%;
+    height: 95vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#connexion{
+    border: 1px solid blanchedalmond;
+    padding: 15%;
+    background-color: #a2c2a8;
+    box-shadow: 0px 0px 10px 9px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 80%;
+}
+
+a{
+    text-decoration: none;
+    color: #5c827b;
+    font-size: 2rem;
+}
+
+#connexion input {
+    margin: 0;
+}
+
+#error{
+    position: absolute;
+    width: 100%;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    animation: error;
+    animation-fill-mode: forwards;
+    animation-duration: 3s;
+}
+
+@keyframes error {
+    from{opacity : 100}
+    to{opacity: 0}
 }

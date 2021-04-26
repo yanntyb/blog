@@ -8,6 +8,11 @@
     <title><?= $title ?></title>
 </head>
 <body>
+    <?php
+    if(isset($var["error"])){?>
+        <div id="error" style="background-color:<?= $var["color"] ?>"><?= $var["error"]; ?></div><?php
+
+    } ?>
     <?php include( $_SERVER["DOCUMENT_ROOT"] . "/assets/parts/nav.php") ?>
     <?= $html ?>
 </body>

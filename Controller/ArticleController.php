@@ -5,7 +5,7 @@ namespace Controller;
 use Controller\Traits\RenderViewTrait;
 use Model\Entity\Article;
 use Model\Manager\ArticleManager;
-use Model\User\UserManager;
+use Model\Manager\UserManager;
 
 class ArticleController {
 
@@ -52,8 +52,13 @@ class ArticleController {
 
     public function showArticle($id){
         $article = $this->articleManager->getById($id);
+        $users = $this->userManager->getAll();
         $this->render('article',$article->getTitle(),[
             'article' => $article,
+            'id' => $id,
+            'users' => $users,
         ]);
     }
+
+
 }
