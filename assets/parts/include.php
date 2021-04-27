@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 
 // Un controller chope ce que l'utilisateur cherche à faire ( données entrées, etc.... )
 // Il interragit avec le modèle ( adéquat )
@@ -17,3 +17,5 @@ require_once $_SERVER["DOCUMENT_ROOT"] . '/Model/Entity/Comment.php';
 
 require_once $_SERVER["DOCUMENT_ROOT"] . '/Model/Manager/ArticleManager.php';
 require_once $_SERVER["DOCUMENT_ROOT"] . '/Model/Manager/UserManager.php';
+
+session_start();

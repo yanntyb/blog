@@ -7,17 +7,18 @@ class User {
     private ?int $id;
     private ?string $username;
     private ?string $password;
-
+    private ?int $admin;
     /**
      * User constructor.
      * @param string|null $username
      * @param string|null $password
      * @param int|null $id
      */
-    public function __construct(string $username = null, string $password = null, ?int $id = null) {
+    public function __construct(string $username = null, string $password = null,int $admin = null , ?int $id = null) {
         $this->id = $id;
         $this->username = $username;
         $this->password = $password;
+        $this->admin = $admin;
     }
 
 
@@ -65,5 +66,25 @@ class User {
         $this->password = $password;
         return $this;
     }
+
+    /**
+     * @return int|null
+     */
+    public function getAdmin(): ?int
+    {
+        return $this->admin;
+    }
+
+    /**
+     * @param int|null $admin
+     * @return $this
+     */
+    public function setAdmin(?int $admin): User
+    {
+        $this->admin = $admin;
+        return $this;
+    }
+
+
 
 }

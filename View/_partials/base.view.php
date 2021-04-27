@@ -16,5 +16,6 @@
     <?php include( $_SERVER["DOCUMENT_ROOT"] . "/assets/parts/nav.php") ?>
     <?= $html ?>
 </body>
+<script src="https://kit.fontawesome.com/78e483bd6f.js" crossorigin="anonymous"></script>
 </html>
 

@@ -46,11 +46,12 @@ class UserManager {
         }
     }
     
-    public function insertUser($name, $pass){
-        $request = $this->db->prepare("INSERT INTO user  (username, password) VALUES (:name, :pass)");
+    public function insertUser($name, $pass): int{
+        $request = $this->db->prepare("INSERT INTO user (username, password) VALUES (:name, :pass)");
         $request->bindValue(":name", $name);
         $request->bindValue(":pass", $pass);
         $request->execute();
+        return $this->db->lastInsertId();
     }
 
     public function getUser($name, $pass){
@@ -61,10 +62,11 @@ class UserManager {
                 $user = new User();
                 $user
                     ->setId($select["id"])
-                    ->setUsername($select["username"]);
+                    ->setUsername($select["username"])
+                    ->setAdmin($select["admin"]);
                 return $user;
             }
-            return "bad pass";
+            return "bad pass ";
         }
         return "bad name";
     }

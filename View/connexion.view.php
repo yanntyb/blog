@@ -1,32 +1,27 @@
 <div id="connexionCont">
     <div id="connexion">
-        <form action="../connexion.php" method="GET">
-            <h1>Connexion</h1>
+        <form action="../connexion.php" method="get">
             <div>
-                <label for="name">Name</label>
-                <input type="text" name="name" id="name">
+                <input type="text" name="name" placeholder="Name">
             </div>
             <div>
-                <label for="pass">Password</label>
-                <input type="password" name="password" id="password">
+                <input type="password" name="password" id="password" placeholder="Password">
             </div>
             <div>
-                <input type="submit">
+                <input type="submit" value="connexion">
             </div>
         </form>
-        <form action="../newUser.php" method="POST">
-            <h1>Inscription</h1>
+        <form action="../newUser.php" method="post">
             <div>
-                <label for="name">Name</label>
-                <input type="text" name="newName" id="name">
+                <input type="text" name="name" placeholder="Name">
             </div>
             <div>
-                <label for="pass">Password</label>
-                <input type="password" name="password" id="pass">
+                <input type="password" name="password" id="pass" placeholder="Password">
             </div>
             <div>
-                <input type="submit">
+                <input type="submit" value="inscription">
             </div>
         </form>
     </div>
 </div>
+<script src="./assets/js/connexion.js"></script>

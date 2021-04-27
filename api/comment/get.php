@@ -30,7 +30,9 @@ function getComment(int $articleId, ArticleManager $articleManager){
     foreach($comments as $comment){
         $response[] = [
             "author" => $comment->getAuthor()->getUsername(),
-            "content" => $comment->getContent()
+            "content" => sanitize($comment->getContent()),
+            "id" => $comment->getId(),
+            "admin" => $_SESSION["user"]->getAdmin()
         ];
     }
     return json_encode($response);

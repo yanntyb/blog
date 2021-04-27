@@ -10,15 +10,19 @@ html {
 
 body {
     width: 100%;
-    background-color: #C1994E;
+    background-color: #f4f7f2;
 }
 
-.articles {
+article {
     border: 1px solid cadetblue;
-    border-radius: 0.5rem;
     padding: 1rem;
     margin: 5rem;
     font-size: 1.8rem;
+    background: #E5E8E8;
+}
+
+article:hover {
+    background-color: #a2c2a8;
 }
 
 .author {
@@ -32,7 +36,21 @@ body {
 
 input, textarea {
     display: block;
-    margin-top: 3rem;
+    margin-bottom: 5%;
+    padding: 9px;
+    font-size: 15px;
+    border-width: 1px;
+    border-color: #CCCCCC;
+    background-color: #FFFFFF;
+    color: #000000;
+    border-style: hidden;
+    border-radius: 6px;
+    box-shadow: -1px 1px 4px rgba(66,66,66,.42);
+    text-shadow: -1px 0px 0px rgba(66,66,66,.0);
+}
+
+input:focus, textarea:focus{
+    outline:none;
 }
 
 .form-content {
@@ -42,8 +60,10 @@ input, textarea {
 #navbar {
     width: 100%;
     height: 5vh;
-    border: 1px solid black;
-    background-color: #b2b992;
+    background: #E5E8E8;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    position: sticky;
+    top: 0;
 }
 
 #navbar ul{
@@ -54,20 +74,8 @@ input, textarea {
     list-style: none;
     width: 100%;
     height: 100%;
+    color: #408c99 !important;
 
-}
-
-#articleContent{
-    width: 80%;
-    border: 1px solid black;
-}
-
-.commentDiv{
-    border: 1px solid black;
-}
-
-.comment{
-    border: 1px solid black;
 }
 
 #connexionCont{
@@ -79,28 +87,14 @@ input, textarea {
     align-items: center;
 }
 
-#connexion{
-    border: 1px solid blanchedalmond;
-    padding: 15%;
-    background-color: #a2c2a8;
-    box-shadow: 0px 0px 10px 9px rgba(0,0,0,0.3);
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    width: 80%;
-}
-
 a{
     text-decoration: none;
-    color: #5c827b;
+    color: #f8f7f5;
     font-size: 2rem;
 }
 
-#connexion input {
-    margin: 0;
-}
-
 #error{
+    z-index: 10;
     position: absolute;
     width: 100%;
     height: 5vh;
@@ -111,6 +105,176 @@ a{
     animation: error;
     animation-fill-mode: forwards;
     animation-duration: 3s;
+}
+
+.close{
+    color: red;
+}
+
+#addArticle{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#addArticle .form-content{
+    border: 1px solid blanchedalmond;
+    padding: 5%;
+    background-color: #a2c2a8;
+    box-shadow: 0px 0px 10px 9px rgba(0,0,0,0.3);
+}
+
+article a {
+    color: #867d75;
+}
+
+#articleDiv{
+    width: 100%;
+    margin-top: 3%;
+}
+
+#articleContent{
+    width: 70%;
+    margin: auto;
+}
+
+#articleTitle{
+    width: 100%;
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 3%;
+    font-style: italic;
+}
+
+#articleSubContent{
+    font-size: 1.8rem;
+}
+
+#commentForm{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 3%;
+}
+
+#commentTitle{
+    font-size: 2rem;
+    width: 100%;
+    display: block;
+    text-align: center;
+    padding-top: 3%;
+}
+
+#commentForm form{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+
+}
+
+#commentForm div{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3%;
+}
+
+#commentForm textarea{
+    width: 559px; height: 134px;
+    resize: none;
+}
+
+#commentForm input[type=submit]{
+    margin-top: -7%;
+}
+
+#commentDiv{
+    width: 80%;
+    height: 25vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 2% auto auto;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.comment{
+    width: 80%;
+    margin-bottom: 2%;
+    font-size: 1.5rem;
+    border-bottom: 3px outset rgba(28,110,164,0.3);
+}
+
+.commentAuthor{
+    font-style: italic;
+    font-size: 1.8rem;
+    color: #956272;
+}
+
+.commentContent{
+    margin-left: 5%;
+    color: #34475b;
+}
+
+input[type=submit] {
+    box-shadow: 0px 10px 14px -7px #276873;
+    background: #599bb3 linear-gradient(to bottom, #599bb3 5%, #408c99 100%);
+    border-radius:8px;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-size:20px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #3d768a;
+    padding: 5px;
+}
+input[type=submit]:hover {
+    background: #408c99 linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
+}
+input[type=submit]:active {
+    position:relative;
+    top:1px;
+}
+
+#connexion {
+    padding: 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 80%;
+}
+
+#connexion div{
+    margin-bottom: 5px;
+}
+
+#connexion form{
+    padding: 10%;
+    text-align: center;
+    box-shadow: 0px 10px 14px -7px #276873;
+    background: #E5E8E8;
+    border-radius:8px;
+
+}
+
+#connexion label{
+    color: #17202A;
+}
+
+#edit{
+    font-size: 3rem;
+    color: dodgerblue;
 }
 
 @keyframes error {

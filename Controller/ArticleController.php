@@ -1,9 +1,13 @@
 <?php
 
+
 namespace Controller;
+
+require_once $_SERVER["DOCUMENT_ROOT"] . '/Model/Entity/User.php';
 
 use Controller\Traits\RenderViewTrait;
 use Model\Entity\Article;
+use Model\Entity\User;
 use Model\Manager\ArticleManager;
 use Model\Manager\UserManager;
 
@@ -45,20 +49,18 @@ class ArticleController {
             if($user->getId()) {
                 $article = new Article($content, $user, $title);
                 $this->articleManager->add($article);
+                header("Location: index.php?controller=articles");
             }
         }
-        $this->render('add.article', 'Ajouter un article');
+        $this->render('add.article', 'Ajouter un article', ["user" => $_SESSION["user"]]);
     }
 
     public function showArticle($id){
         $article = $this->articleManager->getById($id);
-        $users = $this->userManager->getAll();
         $this->render('article',$article->getTitle(),[
             'article' => $article,
             'id' => $id,
-            'users' => $users,
+            'user' => $_SESSION['user'],
         ]);
     }
-
-
 }
