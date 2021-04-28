@@ -31,6 +31,10 @@ class UserManager {
         return $user;
     }
 
+    /**
+     * Retourne tout les utilisateurs
+     * @return array
+     */
     public function getAll(){
         $request = $this->db->prepare("SELECT * FROM user");
         if($request->execute()){
@@ -45,7 +49,13 @@ class UserManager {
             return $users;
         }
     }
-    
+
+    /**
+     * Ajoute un user en bdd
+     * @param $name
+     * @param $pass
+     * @return int
+     */
     public function insertUser($name, $pass): int{
         $request = $this->db->prepare("INSERT INTO user (username, password) VALUES (:name, :pass)");
         $request->bindValue(":name", $name);
@@ -54,6 +64,12 @@ class UserManager {
         return $this->db->lastInsertId();
     }
 
+    /**
+     * Fonction qui permet de check si les logs corresponde a un user en bdd
+     * @param $name
+     * @param $pass
+     * @return User|string
+     */
     public function getUser($name, $pass){
         $request = $this->db->prepare("SELECT * FROM user WHERE username = :name");
         $request->bindValue(":name", $name);

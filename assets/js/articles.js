@@ -1,7 +1,6 @@
 let closes = document.getElementsByClassName("close");
 
-
-
+//Delet article when click on delete icon
 for(let close of closes){
     close.addEventListener("click", function(e){
         let id = close.parentNode.dataset.id;

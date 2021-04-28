@@ -11,11 +11,14 @@ $articleManager = new ArticleManager();
 
 switch($requestType) {
     case 'POST':
+        //Get Ajax post content
         $data = json_decode(file_get_contents('php://input'));
+        //Modify an article
         if(isset($_GET, $_GET["id"])){
             modifyArticle($articleManager, $_GET["id"], $data->content);
             break;
         }
+        //Delete an article
         deleteArticle($articleManager, $data->id);
         break;
     default:

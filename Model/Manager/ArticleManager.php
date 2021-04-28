@@ -52,6 +52,11 @@ class ArticleManager {
         return $request->execute() && DB::getInstance()->lastInsertId() != 0;
     }
 
+    /**
+     * Get article by id
+     * @param $id
+     * @return Article
+     */
     public function getById($id){
         $request = $this->db->prepare("SELECT * FROM article WHERE id = :id");
         $request->bindValue(":id", $id);
@@ -66,6 +71,11 @@ class ArticleManager {
         }
     }
 
+    /**
+     * Get comment by article id
+     * @param $id
+     * @return array
+     */
     function getComment($id){
         $request = $this->db->prepare("SELECT c.content, c.id, a.user_fk FROM articleComment as a INNER JOIN comment as c ON a.comment_fk = c.id WHERE a.article_fk = :id");
         $request->bindValue(":id", $id);
@@ -84,6 +94,12 @@ class ArticleManager {
         }
     }
 
+    /**
+     * Add comment to a certain Article
+     * @param int $idUser
+     * @param int $idArticle
+     * @param string $content
+     */
     public function addComment(int $idUser, int $idArticle, string $content){
         $request = $this->db->prepare("INSERT INTO comment (content) VALUES (:content)");
         $request->bindValue(":content", sanitize($content));
@@ -97,18 +113,31 @@ class ArticleManager {
         $request->execute();
     }
 
+    /**
+     * Delete article by id
+     * @param $id
+     */
     public function deleteArticle($id){
         $request = $this->db->prepare("DELETE FROM article WHERE id = :id");
         $request->bindValue(":id", $id);
         $request->execute();
     }
 
+    /**
+     * Delete comment by id
+     * @param $id
+     */
     public function removeComment($id){
         $request = $this->db->prepare("DELETE FROM comment WHERE id = :id");
         $request->bindValue(":id", $id);
         $request->execute();
     }
 
+    /**
+     * Modify article that have a certain id
+     * @param $id
+     * @param $content
+     */
     public function modifyArticle($id, $content){
         $request = $this->db->prepare("UPDATE article SET content = :content WHERE id = :id");
         $request->bindValue(":content", sanitize($content));

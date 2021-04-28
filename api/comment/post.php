@@ -12,6 +12,7 @@ $articleManager = new ArticleManager();
 
 switch($requestType) {
     case 'POST':
+        //Get Ajax post content
         $data = json_decode(file_get_contents('php://input'));
         if(isset($_GET["delete"]) && $_GET["delete"] === "true"){
             deleteComment($articleManager, $data->id);
@@ -24,10 +25,22 @@ switch($requestType) {
         break;
 }
 
+/**
+ * Add a comment to ddb
+ * @param ArticleManager $manager
+ * @param $userId
+ * @param $articleId
+ * @param $content
+ */
 function addComment(ArticleManager $manager, $userId, $articleId, $content){
     $manager->addComment($userId,$articleId,$content);
 }
 
+/**
+ * Remove an article from ddb
+ * @param ArticleManager $manager
+ * @param int $id
+ */
 function deleteComment(ArticleManager $manager, int $id){
     $manager->removeComment($id);
 }

@@ -21,6 +21,7 @@ switch($requestType) {
 }
 
 /**
+ * Get all comment of a certain article
  * @param int $articleId
  * @param ArticleManager $articleManager
  */

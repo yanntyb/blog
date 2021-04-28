@@ -118,13 +118,17 @@ a{
     flex-direction: row;
     justify-content: center;
     align-items: center;
+
 }
 
 #addArticle .form-content{
     border: 1px solid blanchedalmond;
+    text-align: center;
+    box-shadow: 0px 10px 14px -7px #276873;
+    background: #E5E8E8;
+    border-radius:8px;
     padding: 5%;
-    background-color: #a2c2a8;
-    box-shadow: 0px 0px 10px 9px rgba(0,0,0,0.3);
+    width: 50%;
 }
 
 article a {
@@ -265,7 +269,10 @@ input[type=submit]:active {
     box-shadow: 0px 10px 14px -7px #276873;
     background: #E5E8E8;
     border-radius:8px;
+}
 
+#connexion input{
+    width: 100%;
 }
 
 #connexion label{
@@ -277,6 +284,16 @@ input[type=submit]:active {
     color: dodgerblue;
 }
 
+#addArticle textarea, #addArticle input:not(input[type=submit]){
+    width: 100%;
+}
+
+
+#addArticle input[type=submit]{
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
 @media screen and (max-width: 800px){
     #connexion{
         flex-direction: column;
@@ -284,8 +301,12 @@ input[type=submit]:active {
     #connexion form{
         margin: 10%;
     }
-    #connexion input{
-        width: 100%;
+    #addArticle {
+        height: 100%;
+    }
+    body{
+        height: 80vh;
+        position: absolute;
     }
 }
 

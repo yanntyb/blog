@@ -55,6 +55,10 @@ class ArticleController {
         $this->render('add.article', 'Ajouter un article', ["user" => $_SESSION["user"]]);
     }
 
+    /**
+     * Affiche l'article qui a un certain id
+     * @param $id
+     */
     public function showArticle($id){
         $article = $this->articleManager->getById($id);
         $this->render('article',$article->getTitle(),[

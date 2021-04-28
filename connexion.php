@@ -15,12 +15,13 @@ if(isset($_GET, $_GET["name"], $_GET["password"])){
     $pass = sanitize($_GET["password"]);
     $userManager = new UserManager();
     $user = $userManager->getUser($name, $pass);
+    //Si getUser() renvoie un string ça veut dire qu'il ya une erreur dont on renvoie a la page de connexion
     if(is_string($user)){
         header("Location: index.php?error=" . $user . "&color=red");
     }
+    //Sinon on stock l'user dans la variable session
     else{
         $_SESSION["user"] = $user;
-        print_r($_SESSION["user"]);
         header('Location: index.php?controller=articles');
     }
 }

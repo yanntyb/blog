@@ -8,7 +8,7 @@ class UserController {
     use RenderViewTrait;
 
     /**
-     * Affiche la page home.
+     * Affiche la page de connexion.
      */
     public function connexionPage() {
         $user = 'Anonymous';

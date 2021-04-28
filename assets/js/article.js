@@ -4,8 +4,9 @@ let editToggle = false;
 let textarea = document.createElement("textarea");
 let content = articleContent.innerHTML;
 let idArticle = document.getElementById("articleDiv").dataset.id;
-try{
 
+//Try because we only can edit article when user connected is an admin
+try{
     edit.addEventListener("click", function(){
         if(!editToggle){
             let style = window.getComputedStyle(articleContent, null);
@@ -17,6 +18,7 @@ try{
             textarea.style.width = width;
             textarea.value = content;
 
+            //Change article div into a textarea
             articleContent.parentNode.replaceChild(textarea, articleContent);
             editToggle = true;
         }

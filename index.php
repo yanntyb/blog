@@ -17,17 +17,17 @@ if(isset($_GET['controller'])) {
     if(isset($_SESSION["user"]) && !is_string($_SESSION["user"])){
         // Alors, l'utilisateur demande une action à effectuer.
         switch($_GET['controller']) {
-            // Affichage de tous les articles.
+
             case 'articles': // ex: http://localhost?controller=articles
                 $controller = new ArticleController();
-
-                // Pour l'ajout / l'édition / la suppression, on va checker un paramètre 'action' => http://localhost?controller=articles&action=new
                 if(isset($_GET['action'])) {
                     switch($_GET['action']) {
                         case 'new' :
+                            //Affiche la page d'ajout d'article
                             $controller->addArticle($_POST);
                             break;
                         case 'see' :
+                            //Affiche l'article dont l'id = $_GET["article"]
                             if(isset($_GET["article"])){
                                 $controller->showArticle($_GET["article"]);
                             }
@@ -37,6 +37,7 @@ if(isset($_GET['controller'])) {
                     }
                 }
                 else {
+                    // Affichage de tous les articles.
                     $controller->articles();
                 }
 
@@ -47,19 +48,19 @@ if(isset($_GET['controller'])) {
         }
     }
     else{
+        //Affiche la page de connexion
         $controller = new UserController();
         $controller->connexionPage();
     }
 }
 else {
+    //Affiche les articles
     if(isset($_SESSION["user"]) && !is_string($_SESSION["user"])){
         header("Location: index.php?controller=articles");
     }
+    //Affiche la page de connexion
     else{
         $controller = new UserController();
         $controller->connexionPage();
     }
-
 }
-
-// Soit l'url ne contient pas le paramètre controller.
